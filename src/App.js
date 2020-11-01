@@ -4,6 +4,7 @@ import MenuMedia from './components/MenuMediaComponent';
 import Menu from './components/MenuComponent';
 import './App.css';
 import {DISHES} from './shared/dishes'
+import DishDetail from './components/DishdetailComponent';
 
 class App extends Component {
 
@@ -26,6 +27,7 @@ class App extends Component {
         </Navbar>
         {/* change to using props to pass dish information */}
         <Menu dishes={this.state.dishes}/>
+        
       </div>
     );
   }
