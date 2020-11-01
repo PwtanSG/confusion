@@ -1,6 +1,6 @@
 import React, { Component } from  'react';
 import { Media } from 'reactstrap';
-import { Card } from 'react-bootstrap';
+import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle} from 'reactstrap';
 
 class Menu extends Component{
 
@@ -20,13 +20,13 @@ class Menu extends Component{
     renderDish(dish){
       if (dish != null){
         return(
-          <Card>
-          <Card.Body>
-            <Card.Img width = "50%" variant="top" src={dish.image} alt={dish.name}/>
-            <Card.Title>{dish.id} : {dish.name}</Card.Title>
-            <Card.Text>{dish.description}</Card.Text>
-          </Card.Body>
-          </Card>
+        <Card>
+          <CardImg width="100" src={dish.image} alt={dish.name}/>	
+          <CardBody>
+          <CardTitle>{dish.name}</CardTitle>
+          <CardText>{dish.description}</CardText>
+          </CardBody>
+        </Card>
         );
       }else {
         return(
@@ -41,13 +41,12 @@ class Menu extends Component{
         {/* change to using props to pass dish information - see App.js passing props dishes*/}
         const menu = this.props.dishes.map((dish) => {
             return (
-              <div key={dish.id} className="col-12 col-sm m-1">
+              <div key={dish.id} className="col-12 col-md-5 m-1">
                 <Card onClick={() => {this.onDishSelect(dish)}}>
-                <Card.Body>
-                  <Card.Img variant="top" src={dish.image} alt={dish.name}/>
-                  <Card.Title>{dish.id} : {dish.name}</Card.Title>
-                  <Card.Text>USD$:{dish.price}</Card.Text>
-                </Card.Body>
+                <CardImg width="100" src={dish.image} alt={dish.name}/>	
+                <CardImgOverlay>
+                  <CardTitle>{dish.name}</CardTitle>
+                </CardImgOverlay>
                 </Card>
               </div>
             );
