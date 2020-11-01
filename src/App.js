@@ -7,15 +7,25 @@ import {DISHES} from './shared/dishes'
 
 class App extends Component {
 
+  constructor(props){
+    super(props);
+
+    {/* dishes information from the dishes.js */}
+    this.state = {
+      dishes: DISHES
+    };
+  }
+
   render(){
   return (
       <div className="App">
         <Navbar dark color="primary">
           <div className="container">
-            <NavbarBrand href="/">reactstrap</NavbarBrand>
+            <NavbarBrand href="/">App js resturant </NavbarBrand>
           </div>
         </Navbar>
-        <MenuMedia />
+        {/* change to using props to pass dish information */}
+        <Menu dishes={this.state.dishes}/>
       </div>
     );
   }

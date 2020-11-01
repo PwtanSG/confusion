@@ -10,7 +10,7 @@ class MenuMedia extends Component{
             dishes: [
                 {
                   id: 0,
-                  name:'Uthappizza',
+                  name:'Seafood pizza',
                   image: 'assets/images/uthappizza.png',
                   category: 'mains',
                   label:'Hot',
