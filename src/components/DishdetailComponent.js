@@ -12,35 +12,34 @@ class DishDetail extends Component{
 
     }
 
-    onDishSelected(dish){
-        
+
+    renderComments(dishComments) {
+      if(dishComments == null) {
+          return (
+              <div>
+              </div>
+          )
       }
-  
-      renderDishSelected(dish){
-        if (dish != null){
-          return(
-         
-            <div>detail</div>
+      else {
+          const comment = dishComments.map((eachComment) => {
+              return (
+              <div>
+                  <li>{eachComment.comment}</li><br />
+                  <li>-- {eachComment.author}, {eachComment.date}</li><br />
+              </div>
+              )
+
+          }
           );
-        }else {
-          return(
-            <div></div>
-          );	
-        }
-       }
+          return (
+              <ul className="list-unstyled">
+                  {comment}
+              </ul>
+          )
+      }
+  }
 
     render(){
-
-        const dishComments = this.props.dishSelected.comments.map((dishComment)=>{
-          return(
-            <div>
-              <br></br>
-              <CardText>{dishComment.id}-{dishComment.comment}</CardText>
-              <CardText>--{dishComment.author}-{dishComment.date}</CardText>
-            </div>
-          
-          )
-        });
 
         return (    
         <div className="container">
@@ -57,12 +56,8 @@ class DishDetail extends Component{
             </div>
 
             <div className="col-12 col-md-5 m-1">
-              <Card>
-              <CardBody>
-              <CardTitle>Comments</CardTitle>
-              {dishComments}
-              </CardBody>
-              </Card>
+                    <h4>Comments</h4>
+                    {this.renderComments(this.props.dishSelected.comments)}
             </div>
           </div>
         </div>
