@@ -25,7 +25,7 @@ class DishDetail extends Component{
               return (
               <div>
                   <li>{eachComment.comment}</li><br />
-                  <li>-- {eachComment.author}, {eachComment.date}</li><br />
+                  <li>-- {eachComment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(eachComment.date)))}</li><br />
               </div>
               )
 
@@ -40,6 +40,14 @@ class DishDetail extends Component{
   }
 
     render(){
+        const dish = this.props.dishSelected;
+        if (dish == null) {
+            return (
+                <div>
+                    no
+                </div>
+            )
+        }
 
         return (    
         <div className="container">
