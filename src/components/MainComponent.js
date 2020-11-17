@@ -19,8 +19,8 @@ class Main extends Component {
     console.log(dishId)
     //const result = this.state.dishes.filter(dishx => dishx.id === this.state.selectedDish);
     //const result = this.state.dishes.filter(dishx => dishx.id === this.state.selectedDish);
-    const result=this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0];
-    console.log(result)
+    //const result=this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0];
+    //console.log(result)
   }
   
 
