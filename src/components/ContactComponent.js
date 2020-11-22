@@ -89,7 +89,7 @@ class Contact extends Component {
                    <div className="col-12 col-md-9">
                    {/*using redux form */}    
                    <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
-                   <Row className="form-group">
+                            <Row className="form-group">
                                 <Label htmlFor="firstname" md={2}>First Name*</Label>
                                 <Col md={10}>
                                     <Control.text model=".firstname" id="firstname" name="firstname"
