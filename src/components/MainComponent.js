@@ -59,6 +59,7 @@ class Main extends Component {
       <div>
         <Header />
         <Switch>
+          <Route exact path="/" component={HomePage} />
           <Route path="/home" component={HomePage} />
           <Route exact path="/aboutus" component={() => <About leaders={this.props.leaders}/>} />
           <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes}/> }/>
