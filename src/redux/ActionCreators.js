@@ -3,19 +3,51 @@ import { DISHES } from '../shared/dishes';
 import { baseUrl } from '../shared/baseUrl';
 
 //main component will call this addComment with the 4 parameters
-export const addComment = (dishId, rating, author, comment) => ({
+export const addComment = (comment) => ({
         //returning an js object in side the arrow function curly brackets
         //actiontype.ADD_COMMENT this is to be send and add into the comments.js
         type: ActionTypes.ADD_COMMENT,
-        payload: {
-            dishId: dishId,
-            rating: rating,
-            author: author,
-            comment: comment
-        }
-
+        payload: comment
 }); 
 
+export const postComment = (dishId, rating, author, comment) => (dispatch) => {
+
+    const newComment = {
+        dishId: dishId,
+        rating: rating,
+        author: author,
+        comment: comment
+    };
+    newComment.date = new Date().toISOString();     //add a date into the new comment
+    
+    //post operation using fetch
+    return fetch(baseUrl + 'comments', {
+        method: "POST",
+        body: JSON.stringify(newComment),
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    })
+    .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error('Error ' + response.status + ': ' + response.statusText);
+          error.response = response;
+          throw error;
+        }
+      },
+      error => {
+            throw error;
+      })
+    .then(response => response.json())
+    .then(response => dispatch(addComment(response)))
+    .catch(error =>  { 
+        console.log('post comments', error.message); 
+        alert('Your comment could not be posted\nError: '+error.message); 
+    });
+};
 
 // ---------- For Dishes --------------
 export const fetchDishes = () => (dispatch) => {
